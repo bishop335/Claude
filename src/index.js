@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const skillsPath = path.join(__dirname, 'skills.json');
+const skillsPath = path.join(__dirname, '..', 'skills.json');
 
 let skills = [];
 try {
@@ -37,6 +37,12 @@ app.get('/api/skills/:id', (req, res) => {
   res.json(item);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+export function createServer() {
+  return app;
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
