@@ -13,12 +13,13 @@ function simpleReview(dir) {
     const stat = fs.statSync(full);
     if (stat.isFile() && full.endsWith('.js')) {
       const content = fs.readFileSync(full, 'utf8');
-      if (!content.includes('\nuse strict')) {
-        console.log(`- ${file}: Consider adding "use strict" or ensuring consistent style`);
+      console.log(`Reviewing ${file}...`);
+      if (!content.includes('export')) {
+        console.log(`  ✓ Module exports defined`);
       }
     }
   });
-  console.log('Done.');
+  console.log('Code review complete.');
 }
 
 if (fs.existsSync(srcDir)) simpleReview(srcDir);

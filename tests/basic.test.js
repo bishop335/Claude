@@ -4,14 +4,12 @@ import assert from 'assert';
 
 const skillsPath = path.join(process.cwd(), 'skills.json');
 
-Deno?.
-
 try {
   const raw = fs.readFileSync(skillsPath, 'utf8');
   const skills = JSON.parse(raw);
   assert.ok(Array.isArray(skills), 'skills.json should contain an array');
-  console.log('skills.json looks good');
+  console.log('✓ skills.json validation passed');
 } catch (err) {
-  console.error('Test failed:', err.message);
+  console.error('✗ Test failed:', err.message);
   process.exit(1);
 }
