@@ -7,3 +7,6 @@ npm-debug.log*
 .env.local
 .env.*.local
 dist/
+logs/
+uploads/
+skills.db
